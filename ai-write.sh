@@ -42,6 +42,6 @@ echo "![$TITLE]($IMAGE_URL)" >> "content/posts/$SLUG-$DATE.md"
 echo "Generated: $SLUG-$DATE.md + image"
 ./build.sh
 git add -A
-git commit -m "AI post + image: $TITLE"
+git commit -m "Post + image: $TITLE"
 git push
 echo "Daily post + image published!"
