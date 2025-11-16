@@ -1,6 +1,6 @@
 # Welcome to Tech-Blog
 
-AI-powered tech tips, every Monday.
+Practical tech tips, every week.
 
 - Home networking
 - Wi-Fi
