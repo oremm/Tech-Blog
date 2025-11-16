@@ -44,22 +44,38 @@ POST=$(echo "$RAW" | sed '/^DALL·E Image Prompt:/,$d')
 
 # Extract prompt itself
 PROMPT=$(echo "$RAW" | sed -n 's/^DALL·E Image Prompt: //p')
-POST_FILE="content/posts/${SLUG}-${DATE}.md"
-echo "$POST" > "$POST_FILE"
 
+# Write directly into Jekyll's docs/_posts as YYYY-MM-DD-slug.md
+POST_FILE="docs/_posts/${DATE}-${SLUG}.md"
+
+# Jekyll front matter + body
+{
+  echo "---"
+  echo "layout: post"
+  echo "title: \"$TITLE\""
+  echo "date: $DATE"
+  echo "---"
+  echo
+  echo "$POST"
+} > "$POST_FILE"
+
+# Call DALL·E and append image markdown
 IMAGE_URL=$(curl -s https://api.openai.com/v1/images/generations \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d "{\"model\": \"dall-e-3\", \"prompt\": \"$PROMPT\", \"n\": 1, \"size\": \"1024x1024\"}" \
   | jq -r ".data[0].url")
 
-echo "" >> "$POST_FILE"
-echo "![${TITLE}](${IMAGE_URL})" >> "$POST_FILE"
+{
+  echo
+  echo "![${TITLE}](${IMAGE_URL})"
+} >> "$POST_FILE"
 
-echo "Generated: ${SLUG}-${DATE}.md + image"
+echo "Generated Jekyll post: ${DATE}-${SLUG}.md + image"
 
-./build.sh
-git add -A
+# No local build; GitHub Pages builds from docs/
+git add "$POST_FILE"
 git commit -m "Post + image: $TITLE" || echo "No changes to commit."
 git push
 echo "Daily post + image published!"
+
