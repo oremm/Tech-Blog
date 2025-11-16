@@ -40,6 +40,3 @@ After selecting the right equipment, it's essential to optimize your Wi-Fi setup
 
 Optimizing your home network and Wi-Fi connectivity is key in today’s tech-driven environment. Whether you invest in a robust router, a mesh networking system, or a simple extender, taking the time to assess your needs will help you create a seamless online experience. Remember to review and tweak your setup as required to keep up with changing technology and bandwidth demands.
 
-## Featured Image Prompt
-
-Create a visually appealing infographic that illustrates a home network setup showing a router, mesh network nodes, Wi-Fi extenders, and various connected devices like smartphones, laptops, and smart TVs in a cozy home environment. Include wifi signals emanating from the devices to represent connectivity.
