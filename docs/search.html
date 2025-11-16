@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title>Search</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: system-ui; padding:20px; background:#0b1220; color:#fff }
+input { width:100%; padding:12px; font-size:18px; border-radius:8px; border:1px solid #444 }
+.result { margin:18px 0; padding:18px; border-radius:12px; background:#111a2b }
+a { color:#87d0ff; text-decoration:none }
+</style>
+</head>
+<body>
+
+<h1>Search</h1>
+<input id="q" placeholder="Type to search...">
+
+<div id="results"></div>
+
+<script>
+let index = [];
+fetch("search.json").then(r=>r.json()).then(d=>index=d);
+
+document.getElementById("q").addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+  let out = "";
+  if (q.length > 2) {
+    index.forEach(p => {
+      if (p.title.toLowerCase().includes(q) ||
+          p.content.toLowerCase().includes(q)) {
+        out += `<div class='result'>
+                 <a href='${p.slug}.html'><h3>${p.title}</h3></a>
+               </div>`;
+      }
+    });
+  }
+  document.getElementById("results").innerHTML = out;
+});
+</script>
+
+</body>
+</html>
