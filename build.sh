@@ -219,8 +219,14 @@ for p in POSTS.glob("*.md"):
     MD.reset()
     body_html = MD.convert(body_md)
 
-    img_match = re.search(r"!\[.*?\]\((.*?)\)", raw)
-    image_url = img_match.group(1) if img_match else ""
+        img_match = re.search(r"!\[.*?\]\((.*?)\)", raw)
+    image_url = ""
+    if img_match:
+        candidate = img_match.group(1).strip()
+        # Only treat as banner if it's a real-looking URL
+        if candidate and candidate != "null" and candidate.startswith("http"):
+            image_url = candidate
+
 
     date = datetime.datetime.fromtimestamp(p.stat().st_mtime)
     summary = extract_summary(body_html)
