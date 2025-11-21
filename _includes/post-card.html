@@ -14,7 +14,7 @@
           <span class="dot">•</span>
           <span class="tags">
             {% for tag in p.tags %}
-              <span class="tag">{{ tag }}</span>
+              <a class="tag" href="{{ '/tags/#' | append: tag | slugify | relative_url }}">{{ tag }}</a>
             {% endfor %}
           </span>
         {% endif %}

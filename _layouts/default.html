@@ -18,16 +18,19 @@
       (function() {
         const root = document.documentElement;
         const stored = localStorage.getItem('theme');
-        if (stored === 'light' || stored === 'dark') {
-          root.setAttribute('data-theme', stored);
-        }
+        const initial = (stored === 'light' || stored === 'dark') ? stored : 'dark';
+        root.setAttribute('data-theme', initial);
+
         const toggle = document.getElementById('theme-toggle');
         if (toggle) {
+          toggle.setAttribute('aria-pressed', initial === 'dark' ? 'false' : 'true');
+
           toggle.addEventListener('click', function () {
             const current = root.getAttribute('data-theme') || 'dark';
             const next = current === 'dark' ? 'light' : 'dark';
             root.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
+            toggle.setAttribute('aria-pressed', next === 'dark' ? 'false' : 'true');
           });
         }
       })();

@@ -2,9 +2,16 @@
   <div class="wrap footer-inner">
     <p class="footer-title">AI Tech Blog</p>
     <p class="footer-meta">
-      Field notes on AI, automation, and homelab tech.<br>
-      Built with Markdown, GitHub Pages, and a stubborn desire to over-engineer everything.
+      Field notes on AI, automation, homelab gear, and real-world troubleshooting.
     </p>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <a href="{{ '/tags/' | relative_url }}">Tags</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+
     <p class="footer-copy">
       &copy; {{ "now" | date: "%Y" }} {{ site.author.name | default: "Eric" }} · All rights reserved.
     </p>
