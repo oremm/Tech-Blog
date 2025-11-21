@@ -1,6 +1,0 @@
-public/
-.secrets/
-
-# Local backups and build output
-content/posts.backup_*
-public/

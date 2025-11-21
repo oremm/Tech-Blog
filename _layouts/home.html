@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div>
+    <p class="eyebrow">AI • Automation • Homelab</p>
+    <h1>AI Tech Blog</h1>
+    <p class="hero-lead">
+      Experiments, breakdowns, and real-world notes on AI tools,
+      automation stacks, and homelab networking from a field tech in the trenches.
+    </p>
+    <div class="hero-actions">
+      <a href="{{ '/blog/' | relative_url }}" class="btn primary">Read the blog</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn ghost">About this project</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Latest articles</h2>
+    <a href="{{ '/blog/' | relative_url }}" class="link-subtle">View all</a>
+  </div>
+
+  <div class="post-grid">
+    {% assign posts_to_show = site.posts | slice: 0, 6 %}
+    {% if posts_to_show.size == 0 %}
+      <p>No posts yet. First article will show up here automatically.</p>
+    {% else %}
+      {% for post in posts_to_show %}
+        {% include post-card.html post=post %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section-alt">
+  <h2>Built for AI workflows</h2>
+  <div class="feature-grid">
+    <article class="feature">
+      <h3>Markdown-first</h3>
+      <p>Write posts in plain Markdown with clean front matter that AI tools can generate or edit easily.</p>
+    </article>
+    <article class="feature">
+      <h3>SEO-friendly structure</h3>
+      <p>Automatic meta tags, clean URLs, and structured titles tuned for search engines and AI crawlers.</p>
+    </article>
+    <article class="feature">
+      <h3>Automation-ready</h3>
+      <p>Drop new <code>.md</code> files into <code>_posts</code> and let GitHub Pages rebuild the site automatically.</p>
+    </article>
+  </div>
+</section>

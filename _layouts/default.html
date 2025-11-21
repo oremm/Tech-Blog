@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    <div class="site">
+      {% include header.html %}
+
+      <main class="content-wrap">
+        {{ content }}
+      </main>
+
+      {% include footer.html %}
+    </div>
+
+    <script>
+      (function() {
+        const root = document.documentElement;
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          root.setAttribute('data-theme', stored);
+        }
+        const toggle = document.getElementById('theme-toggle');
+        if (toggle) {
+          toggle.addEventListener('click', function () {
+            const current = root.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
